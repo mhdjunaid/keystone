@@ -16,7 +16,7 @@ const flattenQueries = (parsedQueries, joinOp) => ({
   relationships: objMerge(parsedQueries.map(q => q.relationships)),
 });
 
-function parser({ listAdapter, getUID = cuid }, query, pathSoFar = [], include) {
+function queryParser({ listAdapter, getUID = cuid }, query, pathSoFar = [], include) {
   if (getType(query) !== 'Object') {
     throw new Error(
       `Expected an Object for query, got ${getType(query)} at path ${pathSoFar.join('.')}`
@@ -30,7 +30,9 @@ function parser({ listAdapter, getUID = cuid }, query, pathSoFar = [], include) 
     if (['AND', 'OR'].includes(key)) {
       // An AND/OR query component
       return flattenQueries(
-        value.map((_query, index) => parser({ listAdapter, getUID }, _query, [...path, index])),
+        value.map((_query, index) =>
+          queryParser({ listAdapter, getUID }, _query, [...path, index])
+        ),
         { AND: '$and', OR: '$or' }[key]
       );
     } else if (getType(value) === 'Object') {
@@ -51,7 +53,7 @@ function parser({ listAdapter, getUID = cuid }, query, pathSoFar = [], include) 
           matchTerm: queryAst.matchTerm,
           postJoinPipeline: [],
           relationships: {
-            [uid]: { ...queryAst, ...parser({ listAdapter, getUID }, value, path) },
+            [uid]: { ...queryAst, ...queryParser({ listAdapter, getUID }, value, path) },
           },
         };
       }
@@ -80,4 +82,4 @@ function parser({ listAdapter, getUID = cuid }, query, pathSoFar = [], include) 
   };
 }
 
-module.exports = { queryParser: parser };
+module.exports = { queryParser };
