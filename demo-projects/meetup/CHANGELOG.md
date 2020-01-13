@@ -1,5 +1,14 @@
 # @keystonejs/demo-project-meetup
 
+## 5.0.5
+
+### Patch Changes
+
+- [`933b3111`](https://github.com/keystonejs/keystone/commit/933b3111af7d629183013e1b42c2026cfbaaa5f4) [#2193](https://github.com/keystonejs/keystone/pull/2193) - Fixed typo in filename
+- Updated dependencies [[`709d44a3`](https://github.com/keystonejs/keystone/commit/709d44a352f4e63be911a699c73304e830e2ee23), [`cc58f0e0`](https://github.com/keystonejs/keystone/commit/cc58f0e05d1de06432e149f0767122ae51d1c31a)]:
+  - @keystonejs/app-admin-ui@5.5.4
+  - @keystonejs/keystone@5.4.2
+
 ## 5.0.4
 
 ### Patch Changes

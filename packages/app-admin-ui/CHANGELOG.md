@@ -1,5 +1,11 @@
 # @keystonejs/app-admin-ui
 
+## 5.5.4
+
+### Patch Changes
+
+- [`709d44a3`](https://github.com/keystonejs/keystone/commit/709d44a352f4e63be911a699c73304e830e2ee23) [#2198](https://github.com/keystonejs/keystone/pull/2198) - Small UX updates to item/list search input
+
 ## 5.5.3
 
 ### Patch Changes
